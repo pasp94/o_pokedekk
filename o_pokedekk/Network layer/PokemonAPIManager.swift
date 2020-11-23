@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-struct PokemonAPIManager: APIProvider {
+class PokemonAPIManager: APIProvider {
+   
+   public static let share: PokemonAPIManager = PokemonAPIManager()
+   
+   private init() {}
    
    var session: URLSession {
       return URLSession.shared
@@ -46,7 +50,7 @@ struct PokemonAPIManager: APIProvider {
       
       let _ = session.dataTask(with: url) { (data, response, error) in
          guard let httpResponse = response as? HTTPURLResponse else { completion(nil, error); return }
-         switch validate(httpResponse) {
+         switch self.validate(httpResponse) {
             case .success:
                guard let dataResponse = data else {
                   completion(nil, error)
@@ -80,7 +84,7 @@ struct PokemonAPIManager: APIProvider {
       let _ = session.dataTask(with: url) { (data, response, error) in
          guard let httpResponse = response as? HTTPURLResponse else { completion(nil, error); return }
          
-         switch validate(httpResponse) {
+         switch self.validate(httpResponse) {
             case .success:
                guard let dataResponse = data else {
                   completion(nil, error)
@@ -115,7 +119,7 @@ struct PokemonAPIManager: APIProvider {
       let _ = session.dataTask(with: url) { (data, response, error) in
          guard let httpResponse = response as? HTTPURLResponse else { completion(nil, error); return }
          
-         switch validate(httpResponse) {
+         switch self.validate(httpResponse) {
             case .success:
                guard let dataResponse = data else {
                   completion(nil, error)
@@ -131,6 +135,6 @@ struct PokemonAPIManager: APIProvider {
                
                break
          }
-      }
+      }.resume()
    }
 }

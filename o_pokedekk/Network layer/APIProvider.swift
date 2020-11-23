@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol APIProvider {
+protocol APIProvider: class {
    
    var session: URLSession { get }
    
