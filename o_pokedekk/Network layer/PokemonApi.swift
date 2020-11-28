@@ -6,54 +6,51 @@
 
 import Foundation
 
-public enum HTTPMethod: String {
-   case get    = "GET"
-   case post   = "POST"
-}
-
 protocol EndpointType {
-   var baseUrl:      URL { get }
+   var baseUrl:      String { get }
    var path:         String { get }
-   var httpMethod:   HTTPMethod { get }
    
-   func buildURL() -> URL
+   func buildURL()throws -> String
 }
 
 enum PokemonApi<T> {
-   case pokemonFirstPage
-   case pokemonDetail(T)
+   case pokemonPage(index: T? = nil, offset:T? = nil)
+   case pokemonDetail(_ searchKey: T)
 }
 
 extension PokemonApi: EndpointType {
    
-   var basePath: String {
-      return "https://pokeapi.co/api/v2/"
-   }
-   
-   var baseUrl: URL {
-      guard let url = URL(string: basePath) else { fatalError("ERROR: baseURL could not be configured") }
-      return url
-   }
+   var baseUrl: String { return "https://pokeapi.co/api/v2/" }
    
    var path: String {
       switch self {
-         case .pokemonFirstPage:
-            return "pokemon/"
+         case .pokemonPage(_, _):
+            return "pokemon"
             
          case .pokemonDetail(let searchComponent):
             return "pokemon/\(searchComponent)/"
       }
    }
    
-   var httpMethod: HTTPMethod {
+   func buildURL()throws -> String {
       switch self {
-         case .pokemonFirstPage,
-              .pokemonDetail(_):
-            return .get
+         case .pokemonPage(let offset, let limit):
+            var queryItems = [URLQueryItem]()
+            if let offset = offset, let limit = limit {
+               queryItems.append(URLQueryItem(name: "offset", value: "\(offset)"))
+               queryItems.append(URLQueryItem(name: "limit", value: "\(limit)"))
+            }
+            
+            let uri = baseUrl.appending(path)
+            var components = URLComponents(string: uri)
+            components?.queryItems = queryItems
+            
+            guard let url = components?.url else { throw NetworkError.badURL }
+            
+            return url.absoluteString
+            
+         case .pokemonDetail(_):
+            return baseUrl.appending(path)
       }
-   }
-   
-   func buildURL() -> URL {
-      return self.baseUrl.appendingPathComponent(self.path)
    }
 }

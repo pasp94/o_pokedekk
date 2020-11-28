@@ -9,12 +9,7 @@ import Foundation
 import UIKit
 
 
-class AppRouter: Router {
-   
-   enum AppContexts: String {
-      case list   = "list"
-      case detail = "detail"
-   }
+final class AppRouter: Router {
    
    internal var navigationController: UINavigationController
    
@@ -55,5 +50,13 @@ class AppRouter: Router {
    
    func goBack() {
       navigationController.popViewController(animated: true)
+   }
+}
+
+extension AppRouter {
+   //This are the list of all the Context available in the app
+   enum AppContexts: String {
+      case list   = "list"
+      case detail = "detail"
    }
 }
