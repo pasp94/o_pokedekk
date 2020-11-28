@@ -9,6 +9,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
    
+   private lazy var spinner: UIActivityIndicatorView = initSpinner()
+   
    init() {
       super.init(nibName: nil, bundle: nil)
    }
@@ -19,12 +21,12 @@ class BaseViewController: UIViewController {
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
       if #available(iOS 13.0, *) {
          self.overrideUserInterfaceStyle = .light
       }
+      self.view.backgroundColor = .white
    }
-
+   
    public func showAlert(title: String?, message: String?, error: Error? = nil) {
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
       let close = UIAlertAction(title: "Close", style: .cancel) { (_) in }
@@ -34,5 +36,33 @@ class BaseViewController: UIViewController {
       self.present(alert, animated: true, completion: {})
    }
    
+   private func initSpinner() -> UIActivityIndicatorView {
+      let indicator = UIActivityIndicatorView(style: .whiteLarge)
+      indicator.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
+      indicator.translatesAutoresizingMaskIntoConstraints = false
+      
+      view.addSubview(indicator)
+      NSLayoutConstraint.activate([
+         indicator.topAnchor.constraint(equalTo: view.topAnchor),
+         indicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+         indicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+         indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      ])
+      
+      return indicator
+   }
+   
+   public func showSpinner() {
+      DispatchQueue.main.async {
+         self.spinner.startAnimating()
+      }
+   }
+   
+   
+   public func hideSpinner() {
+      DispatchQueue.main.async {
+         self.spinner.stopAnimating()
+      }
+   }
 }
 

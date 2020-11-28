@@ -10,19 +10,20 @@ import UIKit
 class PokemonListViewController: BaseViewController {
    
    fileprivate var collectionView: UICollectionView = {
-      
       let layout = UICollectionViewFlowLayout()
       layout.scrollDirection = .vertical
       
       let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
       collection.translatesAutoresizingMaskIntoConstraints = false
-      collection.register(PokemonListCell.self, forCellWithReuseIdentifier: PokemonListCell.reuseIdentifier)
+      collection.showsVerticalScrollIndicator = false
+      collection.showsHorizontalScrollIndicator = false
+      collection.register(PokemonListCell.self, forCellWithReuseIdentifier: String(describing: PokemonListCell.self))
       collection.backgroundColor = .clear
       
       return collection
    }()
    
-   var listViewModel: PokemonListViewModel
+   var listViewModel: ListViewModel
    
    init(viewModel: PokemonListViewModel) {
       self.listViewModel = viewModel
@@ -36,20 +37,18 @@ class PokemonListViewController: BaseViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      self.view.backgroundColor = .white
-   
-      self.setCollectionViewConstraints()
-      self.initViewModel()
+      setupCollectionView()
+      setupViewModel()
       
-      listViewModel.fetchNextPokemons()
+      listViewModel.initList()
    }
    
    
    // MARK: SETUP VIEWMODEL
-   fileprivate func initViewModel() {
-      self.listViewModel.bindData {
-         
+   fileprivate func setupViewModel() {
+      self.listViewModel.bindDataList {
          DispatchQueue.main.async {
+            self.hideSpinner()
             self.collectionView.reloadData()
          }
       }
@@ -57,7 +56,7 @@ class PokemonListViewController: BaseViewController {
    
    
    // MARK: SETUP VIEWS COSTRAINTS
-   fileprivate func setCollectionViewConstraints() {
+   private func setupCollectionView() {
       collectionView.delegate = self
       collectionView.dataSource = self
       
@@ -71,41 +70,43 @@ class PokemonListViewController: BaseViewController {
    }
 }
 
-extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-   
+extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      
-      let cellSize = (collectionView.bounds.width - 60) * 0.5
+      let cellSize = (collectionView.bounds.width - 60.0) / 2
       return CGSize(width: cellSize, height: cellSize)
    }
    
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-      
       return UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
    }
-   
+}
+
+extension PokemonListViewController: UICollectionViewDataSource {
    
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return listViewModel.pokemonList.value.count
+      return listViewModel.numberOfItems
    }
    
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonListCell.reuseIdentifier, for: indexPath) as! PokemonListCell
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PokemonListCell.self), for: indexPath) as? PokemonListCell
+      else { return .init() }
       
-      cell.backgroundColor = .red
-      cell.name.text = listViewModel.pokemonList.value[indexPath.row].name
+      listViewModel.bindDataCell(cell: cell, at: indexPath)
       
       return cell
    }
+}
+
+extension PokemonListViewController: UICollectionViewDelegate {
    
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      //Chiamata la router per la navigazione
-      listViewModel.showPokemonDetail(index: indexPath.row)
+      showSpinner()
+//      listViewModel.didSelectCell(at: indexPath)
    }
    
    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-      if indexPath.row % 15 == 0 {
-         listViewModel.fetchNextPokemons()
-      }
+      guard indexPath.row == (listViewModel.numberOfItems - 5) else { return }
+      self.showSpinner()
+      listViewModel.displayMoreObjects(from: indexPath.row)
    }
 }
