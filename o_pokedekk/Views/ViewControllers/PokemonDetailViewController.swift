@@ -18,7 +18,6 @@ final class PokemonDetailViewController: BaseViewController {
    fileprivate let pokemonImageView: UIImageView = {
       let view = UIImageView()
       view.translatesAutoresizingMaskIntoConstraints = false
-      view.layer.cornerRadius = 30.0
       view.contentMode = .scaleAspectFit
       return view
    }()
@@ -100,9 +99,15 @@ final class PokemonDetailViewController: BaseViewController {
       setupViewModel()
    }
    
-   override func viewWillLayoutSubviews() {
-      super.viewWillLayoutSubviews()
-      self.view.setNeedsUpdateConstraints()
+   override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      hideSpinner()
+   }
+   
+   override func rotated() {
+      pokemonElementCollection.collectionViewLayout.invalidateLayout()
+      weightInfoView.setNeedsLayout()
+      heightInfoView.setNeedsLayout()
    }
    
    func setupViewModel() {
@@ -163,7 +168,7 @@ final class PokemonDetailViewController: BaseViewController {
          weightInfoView.topAnchor.constraint(equalTo: pokemonElementCollection.bottomAnchor, constant: 20.0),
          weightInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20.0),
          weightInfoView.heightAnchor.constraint(equalToConstant: 72.0),
-         weightInfoView.widthAnchor.constraint(equalToConstant: (view.frame.width - 50)/2),
+         weightInfoView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 50)/2),
          
          heightInfoView.topAnchor.constraint(equalTo: weightInfoView.topAnchor),
          heightInfoView.bottomAnchor.constraint(equalTo: weightInfoView.bottomAnchor),

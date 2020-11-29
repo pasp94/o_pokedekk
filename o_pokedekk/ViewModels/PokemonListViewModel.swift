@@ -28,7 +28,7 @@ final class PokemonListViewModel {
    }
    
    private func fetchMorePokemons(from index: Int) {
-      apiManager.getPokemonPage(fromPageNumber: index, pokemonPerPage: 20, completion: { [weak self] (result) in
+      apiManager.getPokemonPage(fromPageNumber: index, pokemonPerPage: Constants.pokemonPerPage, completion: { [weak self] (result) in
          guard let self = self else { return }
          
          switch result {
@@ -97,8 +97,12 @@ extension PokemonListViewModel: ListViewModel {
    }
    
    func displayMoreObjects(from index: Int) {
-      if let url = nextPageURL {
-         fetchMorePokemons(from: url)
+      if AppUtil.isIPhone {
+         if let url = nextPageURL {
+            fetchMorePokemons(from: url)
+         } else {
+            fetchMorePokemons(from: index)
+         }
       } else {
          fetchMorePokemons(from: index)
       }

@@ -15,7 +15,6 @@ struct PokemonDetail: Codable {
    let weight: Double
    let height: Double
    let types: [TypeElement]
-   let locationAreaEncounters: String
    let abilities: [Ability]
    let stats: [Stat]
    
@@ -30,14 +29,12 @@ struct PokemonDetail: Codable {
                      weight: weight,
                      height: height,
                      types: types,
-                     locationAreaEncounters: locationAreaEncounters,
                      abilities: abilities,
                      stats: stats)
    }
    
    enum CodingKeys: String, CodingKey {
       case id, name, sprites, weight, height, types, abilities, stats
-      case locationAreaEncounters = "location_area_encounters"
    }
    
 }

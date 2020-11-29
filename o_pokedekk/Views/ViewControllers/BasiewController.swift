@@ -25,6 +25,25 @@ class BaseViewController: UIViewController {
          self.overrideUserInterfaceStyle = .light
       }
       self.view.backgroundColor = .white
+      
+      NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+   }
+
+   deinit {
+      NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+   }
+   
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      /// This Design choise is made to impove the UX on iPhone
+      /// (in particoular when the user is in Detail View)
+      AppUtil.isIPhone ? AppUtil.lockOrientation(.portraitUpsideDown) : AppUtil.lockOrientation(.all)
+   }
+   
+
+   @objc open func rotated() {
+      /// Is possible to checke the shared value UIDevice.current.orientation.isLandscape
+      /// to understand which layout the app as
    }
    
    public func showAlert(title: String?, message: String?, error: Error? = nil) {

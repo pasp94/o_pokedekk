@@ -12,8 +12,8 @@ class PokemonListViewController: BaseViewController {
    fileprivate var collectionView: UICollectionView = {
       let layout = UICollectionViewFlowLayout()
       layout.scrollDirection = .vertical
-      layout.minimumLineSpacing = 20.0
-      layout.minimumInteritemSpacing = 20.0
+      layout.minimumLineSpacing = Constants.spacing
+      layout.minimumInteritemSpacing = Constants.spacing
       
       let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
       collection.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +47,21 @@ class PokemonListViewController: BaseViewController {
       listViewModel.initList()
    }
    
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      setupNavBarApparence()
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      hideSpinner()
+   }
+   
+   
+   override func rotated() {
+      collectionView.collectionViewLayout.invalidateLayout()
+   }
+   
    
    // MARK: SETUP VIEWMODEL
    fileprivate func setupViewModel() {
@@ -72,16 +87,42 @@ class PokemonListViewController: BaseViewController {
          collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
       ])
    }
+   
+   func setupNavBarApparence() {
+      navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+      navigationController?.navigationBar.shadowImage = UIImage()
+      navigationController?.navigationBar.isTranslucent = false
+      navigationController?.navigationBar.tintColor = .white
+      navigationController?.view.backgroundColor = .white
+   }
 }
 
 extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let cellSize = (collectionView.bounds.width - 60.0) / 2
+      /// Squared cell are used in this app
+      var cellSize: CGFloat
+      
+      if AppUtil.isIPhone {
+         /// iPhone Screen: the rotation is locked (Design choise)
+         cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.iphoneCell + 1)) / Constants.iphoneCell
+      
+      } else {
+         /// iPad Screen: the rotation is not locked
+         /// so we can have portrait or landscape mode
+         if UIDevice.current.orientation.isLandscape {
+            cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.landscapeIpadCell + 1)) / Constants.landscapeIpadCell
+         } else {
+            cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.portraitIpadCell + 1)) / Constants.portraitIpadCell
+         }
+      }
       return CGSize(width: cellSize, height: cellSize)
    }
    
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-      return UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+      return UIEdgeInsets(top: Constants.inset,
+                          left: Constants.inset,
+                          bottom: Constants.inset,
+                          right: Constants.inset)
    }
 }
 
@@ -104,7 +145,7 @@ extension PokemonListViewController: UICollectionViewDataSource {
 extension PokemonListViewController: UICollectionViewDelegate {
    
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//      showSpinner()
+      showSpinner()
       listViewModel.didSelectCell(at: indexPath)
    }
    

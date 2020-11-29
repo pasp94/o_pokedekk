@@ -31,6 +31,15 @@ class PokemonListCell: UICollectionViewCell {
       return imageView
    }()
    
+   let spinner: UIActivityIndicatorView = {
+      let indicator = UIActivityIndicatorView(style: .whiteLarge)
+      indicator.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
+      indicator.translatesAutoresizingMaskIntoConstraints = false
+      indicator.layer.cornerRadius = 15
+      
+      return indicator
+   }()
+   
    var viewModel: IconNameCellViewModelProtocol?
    
    override init(frame: CGRect) {
@@ -52,6 +61,7 @@ class PokemonListCell: UICollectionViewCell {
       /// Add cell subviews to content view
       contentView.addSubview(pokemonNameLabel)
       contentView.addSubview(pokemonIconImageView)
+      contentView.addSubview(spinner)
       
       /// _Costraint defination and activation_
       NSLayoutConstraint.activate([
@@ -66,6 +76,12 @@ class PokemonListCell: UICollectionViewCell {
          pokemonIconImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
          pokemonIconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
          pokemonIconImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+         
+         /// `Spinner` costrain
+         spinner.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+         spinner.topAnchor.constraint(equalTo: contentView.topAnchor),
+         spinner.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+         spinner.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       ])
       
    }
@@ -92,10 +108,14 @@ extension PokemonListCell: ConfigurableCell {
                self.pokemonNameLabel.text = self.viewModel?.name.uppercased()
                self.pokemonIconImageView.image = self.viewModel?.icon
                self.backgroundColor = self.viewModel?.backgroundColor
+               self.spinner.stopAnimating()
             }
+         } else {
+            self.spinner.startAnimating()
          }
       })
       
+      self.spinner.startAnimating()
       self.viewModel?.fetchViewData()
       
    }

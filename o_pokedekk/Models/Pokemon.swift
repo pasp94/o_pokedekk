@@ -16,7 +16,6 @@ struct Pokemon {
    let weight: Double
    let height: Double
    let types: [PokemonTypeElement]
-   let locationAreaEncounters: String
    let abilities: [PokemonAbility]
    let stats: [PokemonStat]
 }

@@ -11,6 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
    var window: UIWindow?
+   
+   var supportedOrientation: UIInterfaceOrientationMask = .all
 
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       
@@ -26,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window = window
       
       return true
+   }
+   
+   func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+      return supportedOrientation
    }
 
 

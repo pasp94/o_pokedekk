@@ -21,6 +21,8 @@
 		1B520471257334D600A95EF2 /* BaseStatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B520470257334D600A95EF2 /* BaseStatCellViewModel.swift */; };
 		1B5204742573360200A95EF2 /* BaseStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5204732573360200A95EF2 /* BaseStatCell.swift */; };
 		1B5204772573C37200A95EF2 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5204762573C37200A95EF2 /* MoreInfoView.swift */; };
+		1B52048025743E8E00A95EF2 /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B52047F25743E8E00A95EF2 /* AppUtil.swift */; };
+		1B520483257447C900A95EF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B520482257447C900A95EF2 /* Constants.swift */; };
 		1B6D12D42571625C004A8EE0 /* PokemonListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D12D32571625C004A8EE0 /* PokemonListCellViewModel.swift */; };
 		1B6D12D7257162B8004A8EE0 /* PokemonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D12D6257162B8004A8EE0 /* PokemonListCell.swift */; };
 		1B6D12DE2571662F004A8EE0 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D12DD2571662F004A8EE0 /* ConfigurableCell.swift */; };
@@ -63,6 +65,8 @@
 		1B520470257334D600A95EF2 /* BaseStatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatCellViewModel.swift; sourceTree = "<group>"; };
 		1B5204732573360200A95EF2 /* BaseStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatCell.swift; sourceTree = "<group>"; };
 		1B5204762573C37200A95EF2 /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
+		1B52047F25743E8E00A95EF2 /* AppUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtil.swift; sourceTree = "<group>"; };
+		1B520482257447C900A95EF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1B6D12D32571625C004A8EE0 /* PokemonListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCellViewModel.swift; sourceTree = "<group>"; };
 		1B6D12D6257162B8004A8EE0 /* PokemonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCell.swift; sourceTree = "<group>"; };
 		1B6D12DD2571662F004A8EE0 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				1BF919BF25632EAC00BF8BBC /* Observable.swift */,
 				1BB6953D256F958A0073BEB7 /* String+NSString.swift */,
 				1BB69546256FB8140073BEB7 /* CacheWrapper.swift */,
+				1B52047F25743E8E00A95EF2 /* AppUtil.swift */,
+				1B520482257447C900A95EF2 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				1BB6952A256DB6A90073BEB7 /* PokemonDetail.swift in Sources */,
 				1BC5155A256B1EB10004D3A3 /* PokemonDetailViewModelProtocol.swift in Sources */,
 				1BC5154D256ACF310004D3A3 /* ListViewModel.swift in Sources */,
+				1B52048025743E8E00A95EF2 /* AppUtil.swift in Sources */,
 				1BB6952D256DB9C30073BEB7 /* GenericResult.swift in Sources */,
 				1B52046E2573340900A95EF2 /* ProgressLevelCellViewModelProtocol.swift in Sources */,
 				1B4DC1912561963300814B56 /* BasiewController.swift in Sources */,
@@ -361,6 +368,7 @@
 				1BC51549256AB2360004D3A3 /* AppRouter.swift in Sources */,
 				1BF919B725632A2800BF8BBC /* PokemonListViewController.swift in Sources */,
 				1B50A9C125731253009EABF6 /* TypeElementCellViewModel.swift in Sources */,
+				1B520483257447C900A95EF2 /* Constants.swift in Sources */,
 				1B50A9B625731060009EABF6 /* TypeElementCell.swift in Sources */,
 				1B6D12D42571625C004A8EE0 /* PokemonListCellViewModel.swift in Sources */,
 				1BB6953E256F958A0073BEB7 /* String+NSString.swift in Sources */,
