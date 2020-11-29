@@ -16,7 +16,9 @@ class PokemonListCell: UICollectionViewCell {
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = UIFont.systemFont(ofSize: 14, weight: .heavy)
       label.adjustsFontSizeToFitWidth = true
-      label.contentMode = .left
+      label.contentMode = .center
+      label.textColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+      
       return label
    }()
    
@@ -24,7 +26,7 @@ class PokemonListCell: UICollectionViewCell {
       let imageView = UIImageView()
       imageView.translatesAutoresizingMaskIntoConstraints = false
       imageView.contentMode = .scaleAspectFit
-      imageView.backgroundColor = .gray
+      imageView.backgroundColor = .clear
       
       return imageView
    }()
@@ -34,12 +36,18 @@ class PokemonListCell: UICollectionViewCell {
    override init(frame: CGRect) {
       super.init(frame: frame)
       
-      layer.masksToBounds = true
+      
+      contentView.layer.cornerRadius = 2.0
+      contentView.layer.borderWidth = 1.0
+      contentView.layer.borderColor = UIColor.clear.cgColor
+      contentView.layer.masksToBounds = true
+      
       layer.cornerRadius = 15
-      layer.shadowColor = UIColor.darkGray.cgColor
-      layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-      layer.borderWidth = 2.0
-      layer.borderColor = UIColor.darkGray.cgColor
+      layer.shadowColor = UIColor.black.cgColor
+      layer.shadowOffset = CGSize(width: 0, height: 2.0)
+      layer.shadowRadius = 2.0
+      layer.shadowOpacity = 0.5
+      layer.masksToBounds = false
       
       /// Add cell subviews to content view
       contentView.addSubview(pokemonNameLabel)
@@ -73,9 +81,8 @@ class PokemonListCell: UICollectionViewCell {
 
 
 extension PokemonListCell: ConfigurableCell {
-   func setViewModel(_ viewModel: IconNameCellViewModelProtocol) {
-      
-      self.viewModel = viewModel
+   func setViewModel<T>(_ viewModel: T) {
+      self.viewModel = viewModel as? IconNameCellViewModelProtocol
       self.viewModel?.bindDataCell(completion: { [weak self] (viewIsLoaded) in
          
          guard let self = self else { return }
@@ -84,6 +91,7 @@ extension PokemonListCell: ConfigurableCell {
             DispatchQueue.main.async {
                self.pokemonNameLabel.text = self.viewModel?.name.uppercased()
                self.pokemonIconImageView.image = self.viewModel?.icon
+               self.backgroundColor = self.viewModel?.backgroundColor
             }
          }
       })

@@ -1,5 +1,5 @@
 //
-//  IconNameCellViewModel.swift
+//  PokemonListCellViewModel.swift
 //  o_pokedekk
 //
 //  Created by Pasquale Spisto on 27/11/20.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class IconNameCellViewModel {
+final class PokemonListCellViewModel {
    
    var pokemon: Pokemon?
    
@@ -25,7 +25,7 @@ final class IconNameCellViewModel {
    }
 }
 
-extension IconNameCellViewModel: IconNameCellViewModelProtocol {
+extension PokemonListCellViewModel: IconNameCellViewModelProtocol {
    
    var name: String {
       return pokemon?.name ?? "??????"
@@ -35,6 +35,9 @@ extension IconNameCellViewModel: IconNameCellViewModelProtocol {
       return pokemon?.image ?? UIImage() //place-holder
    }
    
+   var backgroundColor: UIColor {
+      return pokemon?.types.first?.color.uiColor ?? .clear
+   }
    
    func fetchViewData() {
       apiManager.getPokemon(urlString: urlResource) { [weak self](result) in

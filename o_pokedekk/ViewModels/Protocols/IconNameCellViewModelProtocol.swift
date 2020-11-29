@@ -1,35 +1,24 @@
 //
-//  NameImageViewModel.swift
+//  IconNameCellViewModelProtocol.swift
 //  o_pokedekk
 //
-//  Created by Pasquale Spisto on 25/11/20.
+//  Created by Pasquale Spisto on 27/11/20.
 //
 
+import Foundation
 import UIKit
 
 protocol IconNameCellViewModelProtocol {
-   var name: String? { get }
-   var icon: UIImage? { get }
    
-   func prepareForReuse()
-}
-
-
-final class IconNameCellViewModel {
+   var name: String { get }
+   var icon: UIImage { get }
+   var backgroundColor: UIColor { get }
    
-}
-
-extension IconNameCellViewModel: IconNameCellViewModelProtocol{
+   func fetchViewData()
    
-   var name: String? {
-      <#code#>
-   }
+   func bindDataCell(completion: @escaping (_ isLoaded: Bool) -> ())
    
-   var icon: UIImage? {
-      return UIImage(named: "place")
-   }
+   func bindErrorCell(completion: @escaping (Error) -> ())
    
-   func prepareForReuse() {
-      //
-   }
+   func prepareCellForReuse()
 }

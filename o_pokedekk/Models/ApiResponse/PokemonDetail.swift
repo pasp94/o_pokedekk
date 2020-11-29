@@ -13,13 +13,14 @@ struct PokemonDetail: Codable {
    let name: String
    let sprites: Sprites
    let weight: Double
+   let height: Double
    let types: [TypeElement]
    let locationAreaEncounters: String
    let abilities: [Ability]
    let stats: [Stat]
    
    func toPokemon(withSprite image: UIImage) -> Pokemon {
-      let types      = self.types.map { PokemonTypeElement(slot: $0.slot, name: $0.name) }
+      let types      = self.types.map { PokemonTypeElement(slot: $0.slot, name: $0.name, color: PokemonTypeElement.ElementColor(rawValue: $0.name) ?? .unknown) }
       let abilities  = self.abilities.map { PokemonAbility(slot: $0.slot, name: $0.name) }
       let stats      = self.stats.map { PokemonStat(baseStat: $0.baseStat, name: $0.name) }
       
@@ -27,6 +28,7 @@ struct PokemonDetail: Codable {
                      name: name,
                      image: image,
                      weight: weight,
+                     height: height,
                      types: types,
                      locationAreaEncounters: locationAreaEncounters,
                      abilities: abilities,
@@ -34,7 +36,7 @@ struct PokemonDetail: Codable {
    }
    
    enum CodingKeys: String, CodingKey {
-      case id, name, sprites, weight, types, abilities, stats
+      case id, name, sprites, weight, height, types, abilities, stats
       case locationAreaEncounters = "location_area_encounters"
    }
    

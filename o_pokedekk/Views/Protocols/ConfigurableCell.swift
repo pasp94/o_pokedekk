@@ -8,6 +8,5 @@
 import Foundation
 
 protocol ConfigurableCell {
-   
-   func setViewModel(_ viewModel: IconNameCellViewModelProtocol)
+   func setViewModel<T>(_ viewModel: T) where T: IconNameCellViewModelProtocol, T: TitledCellViewModelProtocol, T: ProgressLevelCellViewModelProtocol
 }

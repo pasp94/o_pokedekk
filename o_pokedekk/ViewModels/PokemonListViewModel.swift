@@ -91,7 +91,7 @@ extension PokemonListViewModel: ListViewModel {
       
       
       if let cell = cell as? PokemonListCell {
-         let viewModel = IconNameCellViewModel(provider: apiManager, resourcePath: pokemon.url)
+         let viewModel = PokemonListCellViewModel(provider: apiManager, resourcePath: pokemon.url)
          cell.setViewModel(viewModel)
       }
    }

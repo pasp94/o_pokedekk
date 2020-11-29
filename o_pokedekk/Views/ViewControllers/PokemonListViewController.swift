@@ -12,13 +12,17 @@ class PokemonListViewController: BaseViewController {
    fileprivate var collectionView: UICollectionView = {
       let layout = UICollectionViewFlowLayout()
       layout.scrollDirection = .vertical
+      layout.minimumLineSpacing = 20.0
+      layout.minimumInteritemSpacing = 20.0
       
       let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
       collection.translatesAutoresizingMaskIntoConstraints = false
       collection.showsVerticalScrollIndicator = false
       collection.showsHorizontalScrollIndicator = false
+      collection.layer.masksToBounds = false
+      collection.clipsToBounds = false
       collection.register(PokemonListCell.self, forCellWithReuseIdentifier: String(describing: PokemonListCell.self))
-      collection.backgroundColor = .clear
+      collection.backgroundColor = .white
       
       return collection
    }()
@@ -100,8 +104,8 @@ extension PokemonListViewController: UICollectionViewDataSource {
 extension PokemonListViewController: UICollectionViewDelegate {
    
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      showSpinner()
-//      listViewModel.didSelectCell(at: indexPath)
+//      showSpinner()
+      listViewModel.didSelectCell(at: indexPath)
    }
    
    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
