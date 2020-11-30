@@ -68,6 +68,17 @@ final class PokemonDetailViewController: BaseViewController {
       return view
    }()
    
+   fileprivate let moreInfoStack: UIStackView = {
+      let stackView = UIStackView()
+      stackView.translatesAutoresizingMaskIntoConstraints = false
+      stackView.axis = .horizontal
+      stackView.spacing = Constants.spacing
+      stackView.alignment = .center
+      stackView.distribution = .fillEqually
+      
+      return stackView
+   }()
+   
    fileprivate let statsTableview: UITableView = {
       let table = UITableView(frame: .zero)
       table.translatesAutoresizingMaskIntoConstraints = false
@@ -144,8 +155,7 @@ final class PokemonDetailViewController: BaseViewController {
       view.addSubview(pokemonImageView)
       view.addSubview(pokemonNameLabel)
       view.addSubview(pokemonElementCollection)
-      view.addSubview(weightInfoView)
-      view.addSubview(heightInfoView)
+      view.addSubview(moreInfoStack)
       view.addSubview(statsTableview)
       
       NSLayoutConstraint.activate([
@@ -155,31 +165,29 @@ final class PokemonDetailViewController: BaseViewController {
          pokemonImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          pokemonImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
          
-         pokemonNameLabel.bottomAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: -20.0),
+         pokemonNameLabel.bottomAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: -Constants.spacing),
          pokemonNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          pokemonNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
          pokemonNameLabel.heightAnchor.constraint(equalToConstant: 30.0),
          
-         pokemonElementCollection.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 20.0),
+         pokemonElementCollection.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: Constants.spacing),
          pokemonElementCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          pokemonElementCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
          pokemonElementCollection.heightAnchor.constraint(equalToConstant: 30.0),
          
-         weightInfoView.topAnchor.constraint(equalTo: pokemonElementCollection.bottomAnchor, constant: 20.0),
-         weightInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20.0),
-         weightInfoView.heightAnchor.constraint(equalToConstant: 72.0),
-         weightInfoView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 50)/2),
+         moreInfoStack.topAnchor.constraint(equalTo: pokemonElementCollection.bottomAnchor, constant: Constants.spacing),
+         moreInfoStack.heightAnchor.constraint(equalToConstant: 72.0),
+         moreInfoStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.spacing),
+         moreInfoStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.spacing),
          
-         heightInfoView.topAnchor.constraint(equalTo: weightInfoView.topAnchor),
-         heightInfoView.bottomAnchor.constraint(equalTo: weightInfoView.bottomAnchor),
-         heightInfoView.leadingAnchor.constraint(equalTo: weightInfoView.trailingAnchor, constant: 20.0),
-         heightInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0),
-         
-         statsTableview.topAnchor.constraint(equalTo: weightInfoView.bottomAnchor, constant: 20.0),
+         statsTableview.topAnchor.constraint(equalTo: moreInfoStack.bottomAnchor, constant: Constants.spacing),
          statsTableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
          statsTableview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          statsTableview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       ])
+      
+      moreInfoStack.addArrangedSubview(weightInfoView)
+      moreInfoStack.addArrangedSubview(heightInfoView)
       
       ///Place-holdel setting
       weightInfoView.infoTitleLabel.text = "weight".capitalized
