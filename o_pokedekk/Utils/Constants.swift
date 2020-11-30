@@ -24,4 +24,6 @@ struct Constants {
    static var portraitIpadCell:     CGFloat { 3.0 }
    
    static var pokemonPerPage:       Int { return AppUtil.isIPhone ? 20 : 40 }
+   
+   static var appColor:             UIColor { .init(red: 180/255, green: 41/255, blue: 17/255, alpha: 1.0) }
 }

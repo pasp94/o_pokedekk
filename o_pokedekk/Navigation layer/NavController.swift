@@ -22,4 +22,8 @@ class NavController: UINavigationController {
          return .all
       }
    }
+   
+   override var preferredStatusBarStyle: UIStatusBarStyle {
+      return .lightContent
+   }
 }

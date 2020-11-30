@@ -92,7 +92,7 @@ class PokemonListViewController: BaseViewController {
       navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
       navigationController?.navigationBar.shadowImage = UIImage()
       navigationController?.navigationBar.isTranslucent = false
-      navigationController?.navigationBar.barTintColor = .red
+      navigationController?.navigationBar.barTintColor = Constants.appColor
       navigationController?.view.backgroundColor = .white
    }
 }
