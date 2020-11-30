@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GenericResult: Codable {
+struct GenericResult: Codable, Hashable {
    let name: String
    let url: String
 }

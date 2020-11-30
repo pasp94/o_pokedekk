@@ -35,8 +35,9 @@ final class PokemonListViewModel {
             case .success(let newPokemonPage):
                self.nextPageURL  = newPokemonPage.next
                guard let results = newPokemonPage.results else { return }
-               //remove replicate before
-               self.pokemonList.value.append(contentsOf: results)
+               var oldList = self.pokemonList.value
+               oldList.appendRemovingDuplicate(sequence: results)
+               self.pokemonList.value = oldList
                break
                
             case .failure(let error):
@@ -54,8 +55,9 @@ final class PokemonListViewModel {
             case .success(let newPokemonPage):
                self.nextPageURL  = newPokemonPage.next
                guard let results = newPokemonPage.results else { return }
-               //remove replicate before
-               self.pokemonList.value.append(contentsOf: results)
+               var oldList = self.pokemonList.value
+               oldList.appendRemovingDuplicate(sequence: results)
+               self.pokemonList.value = oldList
                break
                
             case .failure(let error):
