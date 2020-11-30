@@ -23,6 +23,10 @@ class NavController: UINavigationController {
       }
    }
    
+   override var shouldAutorotate: Bool {
+      return true
+   }
+   
    override var preferredStatusBarStyle: UIStatusBarStyle {
       return .lightContent
    }

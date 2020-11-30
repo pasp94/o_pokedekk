@@ -134,6 +134,12 @@ final class PokemonDetailViewController: BaseViewController {
             self.statsTableview.reloadData()
          }
       }
+      
+      detailViewModel.bindError {[weak self] (error) in
+         guard let self = self else {return}
+         self.showAlert(title: "Warning!", message: "An error occurred.", error: error)
+      }
+      
       detailViewModel.fetchDetailInfo()
    }
    

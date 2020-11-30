@@ -11,7 +11,7 @@ import UIKit
 final class PokemonDetailViewModel {
    
    var pokemon: Observable<Pokemon?> = Observable(nil)
-   var detailImage: Observable<UIImage> = Observable(UIImage()) //use placeholder for image
+   var detailImage: Observable<UIImage> = Observable(Constants.iconPlaceholder)
    
    var error: Observable<Error?> = Observable(nil)
    
@@ -30,11 +30,11 @@ final class PokemonDetailViewModel {
 extension PokemonDetailViewModel: PokemonDetailViewModelProtocol {
    
    var name: String {
-      return pokemon.value?.name ?? "??????"
+      return pokemon.value?.name ?? Constants.namePlaceholder
    }
    
    var icon: UIImage {
-      return pokemon.value?.image ?? UIImage() //place-holder
+      return pokemon.value?.image ?? Constants.iconPlaceholder
    }
    
    var weight: String {
@@ -103,7 +103,6 @@ extension PokemonDetailViewModel: PokemonDetailViewModelProtocol {
    func bindError(completion: @escaping (Error) -> ()) {
       error.bind { (error) in
          guard let error = error else { return }
-         
          completion(error)
       }
    }
@@ -128,5 +127,4 @@ extension PokemonDetailViewModel: PokemonDetailViewModelProtocol {
          cell.setViewModel(viewModel)
       }
    }
-   
 }

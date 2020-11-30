@@ -18,6 +18,7 @@ class PokemonListCell: UICollectionViewCell {
       label.adjustsFontSizeToFitWidth = true
       label.contentMode = .center
       label.textColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+      label.text = Constants.namePlaceholder
       
       return label
    }()
@@ -27,6 +28,7 @@ class PokemonListCell: UICollectionViewCell {
       imageView.translatesAutoresizingMaskIntoConstraints = false
       imageView.contentMode = .scaleAspectFit
       imageView.backgroundColor = .clear
+      imageView.image = Constants.iconPlaceholder
       
       return imageView
    }()
@@ -85,8 +87,8 @@ class PokemonListCell: UICollectionViewCell {
    
    override func prepareForReuse() {
       self.viewModel?.prepareCellForReuse()
-      self.pokemonNameLabel.text = "??????"
-      self.pokemonIconImageView.image = UIImage()
+      self.pokemonNameLabel.text = Constants.namePlaceholder
+      self.pokemonIconImageView.image = Constants.iconPlaceholder
       self.backgroundColor = .clear
    }
    
@@ -115,8 +117,6 @@ extension PokemonListCell: ConfigurableCell {
          }
       })
       
-      self.spinner.startAnimating()
       self.viewModel?.fetchViewData()
-      
    }
 }

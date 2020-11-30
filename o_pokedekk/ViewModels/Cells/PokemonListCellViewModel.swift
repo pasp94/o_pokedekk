@@ -28,11 +28,11 @@ final class PokemonListCellViewModel {
 extension PokemonListCellViewModel: IconNameCellViewModelProtocol {
    
    var name: String {
-      return pokemon?.name ?? "??????"
+      return pokemon?.name ?? Constants.namePlaceholder
    }
    
    var icon: UIImage {
-      return pokemon?.image ?? UIImage() //place-holder
+      return pokemon?.image ?? Constants.iconPlaceholder
    }
    
    var backgroundColor: UIColor {
@@ -58,7 +58,7 @@ extension PokemonListCellViewModel: IconNameCellViewModelProtocol {
    }
    
    func bindDataCell(completion: @escaping (_ isLoaded: Bool) -> ()) {
-      self.isLoaded.bind { (isLoaded) in
+      self.isLoaded.bindAnFire { (isLoaded) in
          completion(isLoaded)
       }
    }

@@ -65,11 +65,17 @@ class PokemonListViewController: BaseViewController {
    
    // MARK: SETUP VIEWMODEL
    fileprivate func setupViewModel() {
-      self.listViewModel.bindDataList {
+      self.listViewModel.bindDataList { [weak self] in
+         guard let self = self else {return}
          DispatchQueue.main.async {
             self.hideSpinner()
             self.collectionView.reloadData()
          }
+      }
+      
+      self.listViewModel.bindError {[weak self] (error) in
+         guard let self = self else {return}
+         self.showAlert(title: "Warning!", message: "An error occurred.", error: error)
       }
    }
    

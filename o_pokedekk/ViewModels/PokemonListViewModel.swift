@@ -77,9 +77,10 @@ extension PokemonListViewModel: ListViewModel {
    }
    
    func bindError(completion: @escaping (Error) -> ()) {
-//      self.error.bind { (value) in
-//         completion(value)
-//      }
+      error.bind { (error) in
+         guard let error = error else { return }
+         completion(error)
+      }
    }
    
    func initList() {

@@ -38,7 +38,9 @@ class BaseViewController: UIViewController {
       
       alert.addAction(close)
       
-      self.present(alert, animated: true, completion: {})
+      DispatchQueue.main.async {
+         self.present(alert, animated: true, completion: {})
+      }
    }
    
    private func initSpinner() -> UIActivityIndicatorView {
