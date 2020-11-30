@@ -40,7 +40,7 @@ final class MoreInfoView: UIView {
    override init(frame: CGRect) {
       super.init(frame: frame)
       
-      self.layer.cornerRadius = 15.0
+      self.layer.cornerRadius = Constants.moreInfoCorner
       
       /// Add cell subviews to content view
       addSubview(valueLabel)

@@ -15,11 +15,13 @@ struct Constants {
    static var rightInset:           CGFloat { 20.0 }
    static var leftInset:            CGFloat { 20.0 }
    static var spacing:              CGFloat { 20.0 }
-   
+   static var cellCorner:           CGFloat { 15.0 }
+   static var moreInfoCorner:       CGFloat { 15.0 }
+   static var progressCorner:       CGFloat { 15.0 }
    
    static var iphoneCell:           CGFloat { 2.0 }
    static var landscapeIpadCell:    CGFloat { 4.0 }
    static var portraitIpadCell:     CGFloat { 3.0 }
    
-   static var pokemonPerPage:       Int { return AppUtil.isIPhone ? 20 : 35 }
+   static var pokemonPerPage:       Int { return AppUtil.isIPhone ? 20 : 40 }
 }

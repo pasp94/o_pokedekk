@@ -92,7 +92,7 @@ class PokemonListViewController: BaseViewController {
       navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
       navigationController?.navigationBar.shadowImage = UIImage()
       navigationController?.navigationBar.isTranslucent = false
-      navigationController?.navigationBar.tintColor = .white
+      navigationController?.navigationBar.barTintColor = .red
       navigationController?.view.backgroundColor = .white
    }
 }
@@ -100,21 +100,19 @@ class PokemonListViewController: BaseViewController {
 extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       /// Squared cell are used in this app
-      var cellSize: CGFloat
+      var numberOfCell: CGFloat
       
       if AppUtil.isIPhone {
          /// iPhone Screen: the rotation is locked (Design choise)
-         cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.iphoneCell + 1)) / Constants.iphoneCell
+         numberOfCell = Constants.iphoneCell
       
       } else {
          /// iPad Screen: the rotation is not locked
          /// so we can have portrait or landscape mode
-         if UIDevice.current.orientation.isLandscape {
-            cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.landscapeIpadCell + 1)) / Constants.landscapeIpadCell
-         } else {
-            cellSize = (collectionView.bounds.width - Constants.spacing * (Constants.portraitIpadCell + 1)) / Constants.portraitIpadCell
-         }
+         numberOfCell = UIDevice.current.orientation.isLandscape ? Constants.landscapeIpadCell : Constants.portraitIpadCell
       }
+      let cellSize = (collectionView.bounds.width - Constants.spacing * (numberOfCell + 1)) / numberOfCell
+      
       return CGSize(width: cellSize, height: cellSize)
    }
    

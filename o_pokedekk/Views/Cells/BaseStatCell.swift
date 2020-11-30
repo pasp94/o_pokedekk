@@ -25,7 +25,7 @@ final class BaseStatCell: UITableViewCell {
    let progressBar: UIProgressView = {
       let progress = UIProgressView(progressViewStyle: .default)
       progress.translatesAutoresizingMaskIntoConstraints = false
-      progress.layer.cornerRadius = 15
+      progress.layer.cornerRadius = Constants.progressCorner
       
       return progress
    }()

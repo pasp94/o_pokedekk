@@ -29,9 +29,5 @@ struct AppUtil {
       }
    }
    
-   static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
-      if let delegate = UIApplication.shared.delegate as? AppDelegate {
-         delegate.supportedOrientation = orientation
-      }
-   }
+   
 }

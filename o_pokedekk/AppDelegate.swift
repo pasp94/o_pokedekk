@@ -11,12 +11,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
    var window: UIWindow?
-   
-   var supportedOrientation: UIInterfaceOrientationMask = .all
 
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       
-      let navController = UINavigationController()
+      let navController = NavController()
       let router = AppRouter(navController: navController)
       
       router.goToStart()
@@ -29,11 +27,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
       return true
    }
-   
-   func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-      return supportedOrientation
-   }
-
-
 }
 

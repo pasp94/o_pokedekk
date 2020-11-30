@@ -15,9 +15,6 @@ final class AppRouter: Router {
    
    init(navController: UINavigationController) {
       self.navigationController = navController
-      
-      self.navigationController.navigationBar.shadowImage = nil
-//      self.navigationController.navigationBar.setBackgroundImage(UIImage(), for: .any)
    }
    
    func goToStart() {

@@ -35,7 +35,7 @@ class PokemonListCell: UICollectionViewCell {
       let indicator = UIActivityIndicatorView(style: .whiteLarge)
       indicator.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
       indicator.translatesAutoresizingMaskIntoConstraints = false
-      indicator.layer.cornerRadius = 15
+      indicator.layer.cornerRadius = Constants.cellCorner
       
       return indicator
    }()
@@ -46,12 +46,9 @@ class PokemonListCell: UICollectionViewCell {
       super.init(frame: frame)
       
       
-      contentView.layer.cornerRadius = 2.0
-      contentView.layer.borderWidth = 1.0
-      contentView.layer.borderColor = UIColor.clear.cgColor
       contentView.layer.masksToBounds = true
       
-      layer.cornerRadius = 15
+      layer.cornerRadius = Constants.cellCorner
       layer.shadowColor = UIColor.black.cgColor
       layer.shadowOffset = CGSize(width: 0, height: 2.0)
       layer.shadowRadius = 2.0
@@ -88,6 +85,9 @@ class PokemonListCell: UICollectionViewCell {
    
    override func prepareForReuse() {
       self.viewModel?.prepareCellForReuse()
+      self.pokemonNameLabel.text = "??????"
+      self.pokemonIconImageView.image = UIImage()
+      self.backgroundColor = .clear
    }
    
    required init?(coder: NSCoder) {
