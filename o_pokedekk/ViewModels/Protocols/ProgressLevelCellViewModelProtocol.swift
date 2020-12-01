@@ -9,6 +9,7 @@ import Foundation
 
 protocol ProgressLevelCellViewModelProtocol {
    var name: String { get }
+   
    var levelPercentage: Double { get }
    
    func prepareCellForReuse()

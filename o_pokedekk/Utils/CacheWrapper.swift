@@ -9,7 +9,6 @@ import Foundation
 
 /// This class is a wrapper used to manage NSCache mechanisms
 /// to store structs retrieved by API
-
 final class CacheWrapper<Value> {
    
    private let storage = NSCache<NSString, ObjectWrapper>()
@@ -48,6 +47,9 @@ final class CacheWrapper<Value> {
 
 
 private extension CacheWrapper {
+   
+   /// Implemented to make storable in NSCache any structs
+   /// (NSCache has costraint on the value to store in)
    final class ObjectWrapper {
       let value:  Value
       

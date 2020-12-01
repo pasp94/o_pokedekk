@@ -28,6 +28,6 @@ struct Constants {
    static var appColor:             UIColor { .init(red: 180/255, green:  41/255, blue:  17/255, alpha: 1.0) }
    static var lightTextColor:       UIColor { .init(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0) }
    static var darkTextColor:        UIColor { .init(red:  95/255, green:  95/255, blue:  95/255, alpha: 1.0) }
-   static var namePlaceholder:      String { "????????" }
+   static var namePlaceholder:      String  { "????????" }
    static var iconPlaceholder:      UIImage { UIImage(named: "placeholder") ?? UIImage() }
 }

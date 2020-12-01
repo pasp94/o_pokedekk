@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Custom methods that allow to remove duplicate appending a new sequence
 extension Array where Element: Hashable {
    mutating func appendRemovingDuplicate(sequence: [Element]) {
       self.append(contentsOf: sequence)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonListViewController: BaseViewController {
+final class PokemonListViewController: BaseViewController {
    
    fileprivate var collectionView: UICollectionView = {
       let layout = UICollectionViewFlowLayout()

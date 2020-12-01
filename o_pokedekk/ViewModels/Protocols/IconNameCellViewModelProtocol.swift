@@ -11,7 +11,9 @@ import UIKit
 protocol IconNameCellViewModelProtocol {
    
    var name: String { get }
+   
    var icon: UIImage { get }
+   
    var backgroundColor: UIColor { get }
    
    func fetchViewData()

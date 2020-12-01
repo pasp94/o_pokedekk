@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// The navigation controller that can be customize
+/// for the app (used to customize the orientation supported)
 class NavController: UINavigationController {
    
    override func viewDidLoad() {

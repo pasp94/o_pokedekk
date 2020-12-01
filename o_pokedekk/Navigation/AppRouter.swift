@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+/// The concrete object in charge of navigate the app
 final class AppRouter: Router {
    
    internal var navigationController: UINavigationController

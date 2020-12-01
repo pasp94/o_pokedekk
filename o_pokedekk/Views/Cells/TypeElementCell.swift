@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class TypeElementCell: UICollectionViewCell {
+final class TypeElementCell: UICollectionViewCell {
    
    let typeLabel: UILabel = {
       let label = UILabel()
@@ -35,7 +35,7 @@ class TypeElementCell: UICollectionViewCell {
       
       /// _Costraint defination and activation_
       NSLayoutConstraint.activate([
-         /// `NameLabel` costraint
+         /// `typeLabel` costraint
          typeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
          typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
          typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

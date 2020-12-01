@@ -10,6 +10,7 @@ import UIKit
 
 protocol TitledCellViewModelProtocol {
    var title: String { get }
+   
    var backgroundColor: UIColor { get }
    
    func prepareCellForReuse()

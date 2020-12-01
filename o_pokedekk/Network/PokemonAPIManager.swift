@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+/// Concrete implementation of API Manager that provides
+/// the models of the app and gets the resources
 final class PokemonAPIManager: PokemonProvider {
    
    public static let share: PokemonAPIManager = PokemonAPIManager()
@@ -49,18 +51,16 @@ final class PokemonAPIManager: PokemonProvider {
          return
       }
       
-      self.get(urlString: uri, decodingType: PokemonPage.self) {[weak self] (result) in
+      self.getPokemonPage(fromUrl: uri, completion: {(result) in
          switch result {
             case .success(let page):
                completion(.success(page))
-               guard let self = self else { return }
-               self.pageCache.insertObject(page, for: uri)
                break
             case .failure(let error):
                completion(.failure(error))
                break
          }
-      }
+      })
    }
    
    func getPokemon(urlString: String, completion: @escaping (Result<Pokemon, Error>) -> ()) {
@@ -188,7 +188,6 @@ extension PokemonAPIManager: APIProvider {
          /// Range of status code for Error response
          case 400...500:   return .failure(NetworkError.authenticationError)
          case 501...599:   return .failure(NetworkError.badURL)
-         case 600:         return .failure(NetworkError.outdated)
             
          /// Generic Error Response
          default:          return .failure(NetworkError.failed)

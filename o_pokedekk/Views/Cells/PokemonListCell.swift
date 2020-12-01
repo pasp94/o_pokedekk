@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class PokemonListCell: UICollectionViewCell {
+final class PokemonListCell: UICollectionViewCell {
    
    let pokemonNameLabel: UILabel = {
       let label = UILabel()
@@ -62,13 +62,13 @@ class PokemonListCell: UICollectionViewCell {
       
       /// _Costraint defination and activation_
       NSLayoutConstraint.activate([
-         /// `NameLabel` costraint
+         /// `pokemonNameLabel` costraint
          pokemonNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
          pokemonNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.0),
          pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15.0),
          pokemonNameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.25),
          
-         /// `IconImage` costrain
+         /// `pokemonIconImageView` costrain
          pokemonIconImageView.bottomAnchor.constraint(equalTo: pokemonNameLabel.topAnchor),
          pokemonIconImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
          pokemonIconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

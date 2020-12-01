@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+/// These sturct map the response of pokemon detail request
+/// The informations decode or encoded don't rappresent the whole response
+/// (It's parsed only what we need for this app)
 struct PokemonDetail: Codable {
    let id: Int
    let name: String

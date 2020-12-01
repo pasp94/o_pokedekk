@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// This sturct maps the response of http request
+/// https://pokeapi.co/api/v2/pokemon/?offset={page_index}&limit={number_of_objects}
 struct PokemonPage: Codable {
    let count: Int?
    let next: String?

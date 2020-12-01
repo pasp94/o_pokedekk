@@ -13,6 +13,7 @@ protocol EndpointType {
    func buildURL()throws -> String
 }
 
+/// Allows to build the corrects urls releated to this app
 enum PokemonApi<T> {
    case pokemonPage(index: T? = nil, offset:T? = nil)
    case pokemonDetail(_ searchKey: T)

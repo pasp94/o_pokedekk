@@ -41,12 +41,12 @@ final class BaseStatCell: UITableViewCell {
       
       /// _Costraint defination and activation_
       NSLayoutConstraint.activate([
-         /// `NameLabel` costraint
+         /// `statLabel` costraint
          statLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
          statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
          statLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20.0),
          statLabel.widthAnchor.constraint(equalToConstant: contentView.frame.width*0.15),
-         
+         /// `progressBar` costraint
          progressBar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.0),
          progressBar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20.0),
          progressBar.leadingAnchor.constraint(equalTo: statLabel.trailingAnchor, constant: 30.0),

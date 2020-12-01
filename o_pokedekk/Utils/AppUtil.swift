@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
+
+/// Halper that specify the device type in particoular
+/// - `isIPhone`
+///      -> `true` the device is an iPhone
+///      -> `false` the device is an iPad
 struct AppUtil {
-   
    static var isIPhone: Bool {
       switch UIDevice.current.userInterfaceIdiom {
          case .phone:
@@ -28,6 +32,4 @@ struct AppUtil {
             return false
       }
    }
-   
-   
 }

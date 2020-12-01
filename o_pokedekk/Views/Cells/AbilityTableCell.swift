@@ -32,7 +32,7 @@ final class AbilityTableCell: UITableViewCell {
       
       /// _Costraint defination and activation_
       NSLayoutConstraint.activate([
-         /// `NameLabel` costraint
+         /// `abilityLabel` costraint
          abilityLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
          abilityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
          abilityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
