@@ -10,6 +10,18 @@ A Napoletan version of a famous tool used for getting information about Pokemons
 
 The goal of this project is resolve the given track using a simple and, as much as possible, decopulated architecture, core frameworks and without using any [external libraries.](#External libreries)
 
+# Quick Start
+
+Clone the repo project or download the .zip file
+
+```bash
+# Clone the repo project
+$ git clone https://github.com/pasp94/o_pokedekk.git
+```
+
+
+Open the .xcodeproj file and run it on iOS/iPad simulator or on a real device.
+
 # Architecture
 
 Thi Architecture used for this project is `MVVM` with the help of `Coordinator` pattetern (in project is used [`Router`](#Router) and `AppRouter` to specifithe Coordinator implementation), inorder to navigate the App Screen and [`Provider`](#Provider) to fetch the informations and models.
