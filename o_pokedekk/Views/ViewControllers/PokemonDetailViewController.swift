@@ -29,7 +29,7 @@ final class PokemonDetailViewController: BaseViewController {
       label.adjustsFontSizeToFitWidth = true
       label.textAlignment = .center
       label.contentMode = .center
-      label.textColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+      label.textColor = Constants.lightTextColor
       
       return label
    }()

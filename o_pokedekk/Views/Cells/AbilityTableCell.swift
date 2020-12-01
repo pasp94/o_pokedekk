@@ -17,7 +17,7 @@ final class AbilityTableCell: UITableViewCell {
       label.adjustsFontSizeToFitWidth = true
       label.contentMode = .center
       label.textAlignment = .center
-      label.textColor = UIColor(red: 95/255, green: 95/255, blue: 95/255, alpha: 1.0)
+      label.textColor = Constants.darkTextColor
       
       return label
    }()

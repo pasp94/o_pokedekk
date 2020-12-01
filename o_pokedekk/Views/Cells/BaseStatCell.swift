@@ -17,7 +17,7 @@ final class BaseStatCell: UITableViewCell {
       label.adjustsFontSizeToFitWidth = true
       label.contentMode = .center
       label.textAlignment = .center
-      label.textColor = .gray
+      label.textColor = Constants.darkTextColor
       
       return label
    }()

@@ -18,7 +18,7 @@ class TypeElementCell: UICollectionViewCell {
       label.adjustsFontSizeToFitWidth = true
       label.contentMode = .center
       label.textAlignment = .center
-      label.textColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+      label.textColor = Constants.lightTextColor
       
       return label
    }()
