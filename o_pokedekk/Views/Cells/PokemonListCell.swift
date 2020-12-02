@@ -120,6 +120,14 @@ extension PokemonListCell: ConfigurableCell {
          }
       })
       
+      self.viewModel?.bindErrorCell(completion: { [weak self] (_) in
+         
+         guard let self = self else { return }
+         DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+         }
+      })
+      
       self.viewModel?.fetchViewData()
    }
 }

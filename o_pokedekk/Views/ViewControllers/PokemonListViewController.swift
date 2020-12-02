@@ -75,7 +75,10 @@ final class PokemonListViewController: BaseViewController {
       
       self.listViewModel.bindError {[weak self] (error) in
          guard let self = self else {return}
-         self.showAlert(title: "Warning!", message: "An error occurred.", error: error)
+         DispatchQueue.main.async {
+            self.showAlert(title: "Warning!", message: "An error occurred.", error: error)
+            self.hideSpinner()
+         }
       }
    }
    

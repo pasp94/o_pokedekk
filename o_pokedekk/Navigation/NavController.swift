@@ -26,7 +26,11 @@ class NavController: UINavigationController {
    }
    
    override var shouldAutorotate: Bool {
-      return true
+      if AppUtil.isIPhone {
+         return false
+      } else {
+         return true
+      }
    }
    
    override var preferredStatusBarStyle: UIStatusBarStyle {

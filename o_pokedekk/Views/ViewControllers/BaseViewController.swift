@@ -33,7 +33,13 @@ class BaseViewController: UIViewController {
    @objc open func rotated() { }
    
    public func showAlert(title: String?, message: String?, error: Error? = nil) {
-      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+      var errMessage = message ?? ""
+      
+      if let err = error {
+         errMessage += "\n" + err.localizedDescription
+      }
+      
+      let alert = AlertController(title: title, message: errMessage, preferredStyle: .alert)
       let close = UIAlertAction(title: "Close", style: .cancel) { (_) in }
       
       alert.addAction(close)
