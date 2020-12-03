@@ -2,6 +2,7 @@
 
 
 [![Swift 5.3](https://img.shields.io/badge/Swift-5.3-orange.svg?style=flat)](https://swift.org)
+![iOS 11.0](https://img.shields.io/badge/iOS-11.0-blue.svg?style=flat)
 
 
 # O' Pokedekk
